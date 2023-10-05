@@ -14,7 +14,7 @@ if (!target || typeof target !== "string") {
 }
 
 fetch(source, {
-  headers: { "upgrade": "sse" },
+  headers: { "whs-upgrade": "sse" },
 })
   .then((response) => response.body)
   .then(async (responseBody) => {
@@ -31,7 +31,6 @@ fetch(source, {
           stop = done;
         }
         const strvalue = decoder.decode(value);
-        console.log(strvalue);
 
         // pipe data
         const parsedData = JSON.parse(strvalue);
@@ -53,7 +52,7 @@ fetch(source, {
         fetch(url.toString(), {
           method: parsedData.method,
           headers: parsedData.headers,
-          body: parsedData.body,
+          body: parsedData.body ? parsedData.body : undefined,
         });
 
         console.log("done");

@@ -4,7 +4,7 @@ const json = JSON.stringify;
 async function handleRequest(req: Request): Promise<Response> {
   const bc = new BroadcastChannel("request");
 
-  const upgrade = req.headers.get("upgrade") ?? "";
+  const upgrade = req.headers.get("whs-upgrade") ?? "";
 
   const reqId = crypto.randomUUID();
 
